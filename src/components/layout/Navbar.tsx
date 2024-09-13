@@ -1,10 +1,12 @@
 "use client";
+import logo from "@/image/logo.png";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ProfileSlide from "../pages/profile/ProfileSlide";
-import { Button } from "../ui/button";
 import Menu from "./Menu";
 import { NavigationMenuComponent } from "./NavigationMenu";
+import ThemeSwitch from "./ThemeSwitch";
 
 export default function Navbar() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -34,17 +36,24 @@ export default function Navbar() {
           : "-translate-y-20 opacity-10"
       }`}
     >
-      <Button
-        variant="ghost"
-        className="bg-background text-2xl font-extrabold lg:text-3xl"
-      >
-        <Link href="/">PrimeTech</Link>
-      </Button>
+      <div className="">
+        <Link href="/">
+          <Image
+            src={logo}
+            alt="logo"
+            className=" -ml-6 h-16 w-60 object-cover px-0"
+          />
+        </Link>
+      </div>
+
       <div className="hidden items-center justify-center md:gap-4 lg:flex lg:gap-8">
         <NavigationMenuComponent />
         <ProfileSlide />
       </div>
-      <div className="block lg:hidden">
+      <div className="flex items-center gap-4 lg:hidden">
+        <div className="scale-75">
+          <ThemeSwitch />
+        </div>
         <Menu />
       </div>
     </header>

@@ -1,17 +1,15 @@
+import logo from "@/image/logo.png";
+import Image from "next/image";
 import Link from "next/link";
 import { FaFacebookSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+
 function Footer() {
   return (
     <footer className="mt-10 divide-y bg-secondary md:px-4">
       <div className="mx-auto flex flex-col justify-between space-y-8 py-10 pl-4 pr-2 lg:flex-row lg:space-y-0">
-        <div className="lg:w-1/3">
-          <Link
-            href="/"
-            className="flex justify-center space-x-3 lg:justify-start"
-          >
-            <span className="text-center text-2xl font-bold text-primary">
-              PrimeTech
-            </span>
+        <div className="h-fit lg:w-1/3">
+          <Link href="/" className="h-fit">
+            <Image src={logo} alt="logo" className="h-20 object-cover" />
           </Link>
         </div>
         <div className="grid  grid-cols-2 gap-x-3 gap-y-8 text-sm sm:grid-cols-4 lg:w-2/3">
