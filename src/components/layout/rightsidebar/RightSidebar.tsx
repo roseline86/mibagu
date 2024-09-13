@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FaClock, FaComments, FaStar, FaTag } from "react-icons/fa";
 import CategoryModel from "./CategoryModel";
-import CommentsModel from "./CommentsModel";
+import Comments from "./Comments";
 import Featured from "./Featured";
 import SidebarRecent from "./recent/SidebarRecent";
 
@@ -65,24 +65,12 @@ export default function RightSidebar() {
       <div>
         {active === 1 && <SidebarRecent />}
         {active === 2 && (
-          <div className="mx-auto mt-5  flex w-11/12 flex-col gap-4 md:w-3/5 lg:w-10/12">
-            {/* <PostModel />
-            <PostModel />
-            <PostModel />
-            <PostModel />
-            <PostModel />
-            <PostModel /> */}
-          </div>
+          <div className="mx-auto mt-5  flex w-11/12 flex-col gap-4 md:w-3/5 lg:w-10/12"></div>
         )}
 
         {active === 3 && (
           <div className="mx-auto mt-5  flex w-11/12 flex-col gap-5 md:w-3/5 lg:w-10/12">
-            <CommentsModel />
-            <CommentsModel />
-            <CommentsModel />
-            <CommentsModel />
-            <CommentsModel />
-            <CommentsModel />
+            <Comments />
           </div>
         )}
         {active === 4 && (
