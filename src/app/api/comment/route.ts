@@ -13,9 +13,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
     return new NextResponse("User not logged in or authorId missing");
   }
   try {
-    const { content, postId } = await req.json();
+    const { comment, postId } = await req.json();
 
-    if (!content || !postId) {
+    if (!comment || !postId) {
       return new NextResponse("Content and postId are required", {
         status: 400,
       });
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     const newComment = await prisma.comment.create({
       data: {
-        content,
+        content: comment,
         postId,
         authorId,
       },
@@ -38,8 +38,14 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 export async function GET(req: NextRequest, res: NextResponse) {
   try {
-    const { search } = req.nextUrl;
-    const postId = search.slice(1);
+    const search = req.nextUrl;
+    const postId = search.searchParams.get("id");
+
+    if (!postId) {
+      return new NextResponse("PostId is required", {
+        status: 400,
+      });
+    }
     const comments = await prisma.comment.findMany({
       where: {
         postId,
