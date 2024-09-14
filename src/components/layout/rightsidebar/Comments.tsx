@@ -11,6 +11,7 @@ interface Comment {
     title: string;
     coverImage: string;
     category: string;
+    createdAt: string;
   };
   createdAt: string;
 }
@@ -34,7 +35,7 @@ export default function Comments() {
   return (
     <>
       {data.map((comment: Comment) => (
-        <CommentModel key={comment.id} />
+        <CommentModel key={comment.id} comment={comment} />
       ))}
     </>
   );

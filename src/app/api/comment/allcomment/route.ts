@@ -26,6 +26,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
       orderBy: {
         createdAt: "desc",
       },
+      take: 10,
     });
 
     return new NextResponse(JSON.stringify(comments), { status: 200 });
