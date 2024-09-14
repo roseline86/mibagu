@@ -27,12 +27,13 @@ export default function Menu() {
   const name = session?.user?.name || "PRIME";
   const fallback = name.slice(0, 2);
   const image = session?.user?.image;
+  const email = session?.user?.email;
 
   async function handleLogout() {
-    console.log("clicked");
     signOut({ redirect: false, callbackUrl: "/" });
   }
 
+  const admin = process.env.NEXT_PUBLIC_ADMIN;
   return (
     <div className="mr-3 lg:hidden">
       <Sheet>
@@ -70,13 +71,33 @@ export default function Menu() {
                 </Button>
               </Link>
             </SheetClose>
-            <SheetClose asChild>
-              <Link href="/newpost">
-                <Button variant="default" className="flex w-full">
-                  New Post
-                </Button>
-              </Link>
-            </SheetClose>
+            {email === admin && (
+              <SheetClose asChild>
+                <Link href="/newpost">
+                  <Button variant="outline" className="flex w-full">
+                    New Post
+                  </Button>
+                </Link>
+              </SheetClose>
+            )}
+            {email === admin && (
+              <SheetClose asChild>
+                <Link href="/newads">
+                  <Button variant="outline" className="flex w-full">
+                    New Ads
+                  </Button>
+                </Link>
+              </SheetClose>
+            )}
+            {email === admin && (
+              <SheetClose asChild>
+                <Link href="/adslist">
+                  <Button variant="outline" className="flex w-full">
+                    AdsList
+                  </Button>
+                </Link>
+              </SheetClose>
+            )}
 
             <AlertDialog>
               <AlertDialogTrigger asChild>

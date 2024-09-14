@@ -32,6 +32,7 @@ export default function ProfileSlide() {
     console.log("clicked");
     signOut({ redirect: false, callbackUrl: "/" });
   }
+  const admin = process.env.NEXT_PUBLIC_ADMIN;
 
   return (
     <>
@@ -65,18 +66,38 @@ export default function ProfileSlide() {
               </SheetClose>
               <SheetClose asChild>
                 <Link href="/editprofile">
-                  <Button variant="secondary" className="flex w-full">
+                  <Button variant="outline" className="flex w-full">
                     Edit Profile
                   </Button>
                 </Link>
               </SheetClose>
-              <SheetClose asChild>
-                <Link href="/newpost">
-                  <Button variant="default" className="flex w-full">
-                    New Post
-                  </Button>
-                </Link>
-              </SheetClose>
+              {email === admin && (
+                <SheetClose asChild>
+                  <Link href="/newpost">
+                    <Button variant="outline" className="flex w-full">
+                      New Post
+                    </Button>
+                  </Link>
+                </SheetClose>
+              )}
+              {email === admin && (
+                <SheetClose asChild>
+                  <Link href="/newads">
+                    <Button variant="outline" className="flex w-full">
+                      New Ads
+                    </Button>
+                  </Link>
+                </SheetClose>
+              )}
+              {email === admin && (
+                <SheetClose asChild>
+                  <Link href="/adslist">
+                    <Button variant="outline" className="flex w-full">
+                      AdsList
+                    </Button>
+                  </Link>
+                </SheetClose>
+              )}
 
               <AlertDialog>
                 <AlertDialogTrigger asChild>

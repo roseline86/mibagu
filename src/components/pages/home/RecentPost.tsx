@@ -1,31 +1,40 @@
 "use client";
 import PaginationUi from "@/components/common/pagination/Pagination";
 import AdModel from "@/components/core/ads/AdModel";
-import { adsData } from "@/components/core/ads/AdsData";
+import { FetchAds } from "@/components/fetch/get/ads/FetchAds";
 import { FetchAllPost } from "@/components/fetch/get/allpost/FetchAllPost";
 import Loading from "@/components/helper/Loading";
 import FeaturedPostType from "@/components/type/post/FeaturedPostType";
 import { useState } from "react";
 import RecentPostModel from "./RecentPostModel";
 
-const getAdForIndex = (index: number) => {
-  const adIndex = Math.floor(index / 2) % adsData.length;
-  return adsData[adIndex];
+const getAdForIndex = (index: number, ads: any[]) => {
+  const adIndex = Math.floor(index / 2) % ads.length;
+  return ads[adIndex];
 };
 
 export default function RecentPost() {
   const [page, setPage] = useState<number>(1);
-  const { data, isLoading, isError } = FetchAllPost(page);
 
-  if (isLoading) {
+  // Fetch posts
+  const {
+    data: postData,
+    isLoading: postLoading,
+    isError: postError,
+  } = FetchAllPost(page);
+
+  // Fetch ads
+  const { data: adData, isLoading: adLoading, isError: adError } = FetchAds();
+
+  if (postLoading || adLoading) {
     return <Loading />;
   }
 
-  if (isError || !data) {
-    return <p>Error loading posts. Please try again later.</p>;
+  if (postError || adError || !postData || !adData) {
+    return <p>Error loading posts or ads. Please try again later.</p>;
   }
 
-  const { posts, totalPostsCount } = data;
+  const { posts, totalPostsCount } = postData;
   const totalPages = Math.ceil(totalPostsCount / 10);
 
   const items: JSX.Element[] = [];
@@ -44,17 +53,17 @@ export default function RecentPost() {
       />,
     );
 
-    // Insert an ad after every 2 articles
-    if ((index + 1) % 2 === 0) {
-      const ad = getAdForIndex(index);
+    // Insert an ad after every 2 articles, using fetched ads data
+    if ((index + 1) % 2 === 0 && adData.length > 0) {
+      const ad = getAdForIndex(index, adData);
       items.push(
         <AdModel
           key={`ad-${ad.id}`}
-          adImage={ad.adImage}
-          adTitle={ad.adTitle}
-          adDescription={ad.adDescription}
-          adLink={ad.adLink}
-          adCtaText={ad.adCtaText}
+          adImage={ad.coverImage}
+          adTitle={ad.title}
+          adDescription={ad.description}
+          adLink={ad.link}
+          adCtaText={ad.cta}
         />,
       );
     }

@@ -24,7 +24,7 @@ export default function AdModel({
     <Card className="shadow-lg">
       <CardContent className="p-3">
         <div className="relative">
-          <Link href={adLink}>
+          <Link href={adLink} target="_blank">
             <Image
               src={adImage}
               alt="Ad Image"

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaFacebookSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
 
 function Footer() {
+  const date = new Date();
   return (
     <footer className="mt-10 divide-y bg-secondary md:px-4">
       <div className="mx-auto flex flex-col justify-between space-y-8 py-10 pl-4 pr-2 lg:flex-row lg:space-y-0">
@@ -88,7 +89,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t  border-primary bg-secondary py-3 text-center">
-        © 2024 PrimeTech. All rights reserved.
+        © {date.getFullYear()} MIBAGU. All rights reserved.
       </div>
     </footer>
   );

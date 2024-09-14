@@ -2,9 +2,6 @@
 import formatDate from "@/components/helper/hook/FormattedDate";
 import Loading from "@/components/helper/Loading";
 import ToolTipHookDown from "@/components/helper/ToolTipHookDown";
-import RecentPostModel from "@/components/pages/home/RecentPostModel";
-import CommentsModel from "@/components/pages/profile/CommentModel";
-import PostModel from "@/components/pages/profile/PostModel";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -179,59 +176,6 @@ export default function Profile() {
               </CardFooter>
             </div>
           </Card>
-          <div className="flex w-11/12 flex-col gap-10 lg:flex-row">
-            <Card className="lg:w-9/12">
-              <CardHeader className="text-2xl font-extrabold">
-                <div className="flex flex-wrap items-center justify-center gap-2">
-                  <span>All Post Published By</span>
-                  <span className="text-primary">SEJAR PARVEZ</span>
-                </div>
-              </CardHeader>
-              <div className="mx-2 my-8 grid grid-cols-1 gap-12 md:grid-cols-2">
-                {/* <RecentPostModel />
-                <RecentPostModel />
-                <RecentPostModel />
-                <RecentPostModel />
-                <RecentPostModel />
-                <RecentPostModel />
-                <RecentPostModel />
-                <RecentPostModel /> */}
-              </div>
-            </Card>
-            <div className="flex flex-col gap-10 md:flex-row lg:w-3/12 lg:flex-col">
-              <Card className="h-fit pb-10">
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-center text-xl underline">
-                    All Comments
-                  </CardTitle>
-                </CardHeader>
-                <div className="flex flex-col gap-3">
-                  <CommentsModel />
-                  <CommentsModel />
-                  <CommentsModel />
-                  <CommentsModel />
-                  <CommentsModel />
-                  <CommentsModel />
-                </div>
-              </Card>
-              <Card className="h-fit pb-10">
-                <CardHeader>
-                  <CardTitle className="flex items-center justify-center text-xl underline">
-                    Liked Post
-                  </CardTitle>
-                </CardHeader>
-                <div className="flex flex-col gap-3">
-                  <PostModel />
-                  <PostModel />
-                  <PostModel />
-                  <PostModel />
-                  <PostModel />
-                  <PostModel />
-                  <PostModel />
-                </div>
-              </Card>
-            </div>
-          </div>
         </div>
       )}
     </>
