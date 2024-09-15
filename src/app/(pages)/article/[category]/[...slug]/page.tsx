@@ -26,6 +26,7 @@ export default function Page() {
             category={data.category}
             createdAt={data.createdAt}
             authorId={data.authorId}
+            id={data.id}
           />
           <MainContent content={data.content} />
           <div className="mt-10">

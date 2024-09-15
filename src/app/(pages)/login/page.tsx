@@ -18,8 +18,7 @@ import { Input } from "@/components/ui/input";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaFacebookF, FaGithub, FaTwitter } from "react-icons/fa";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -33,13 +32,9 @@ const FormSchema = z.object({
 
 export default function Login() {
   const [submitting, setSubmitting] = useState(false);
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
-  useEffect(() => {
-    if (session) {
-      router.replace("/profile");
-    }
-  }, [session, router]);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -76,31 +71,20 @@ export default function Login() {
 
   return (
     <>
-      {status === "authenticated" || status === "loading" ? (
+      {status === "loading" ? (
         <Loading />
+      ) : status === "authenticated" ? (
+        "You are already logged in"
       ) : (
         <div className="mt-28 flex items-center justify-center">
           <div className="grid w-11/12 grid-cols-1 justify-around rounded-2xl border  md:w-10/12 md:grid-cols-5 lg:w-8/12">
             <div className="col-span-3 md:rounded-l-2xl">
               <section className="my-8 flex flex-col items-center justify-center gap-4">
                 <h1 className="text-center text-2xl font-bold md:text-3xl lg:text-4xl">
-                  Log in to PrimeTech
+                  Log in to MIBAGU
                 </h1>
                 <span className="bg-primary-200 flex h-1 w-20 rounded-full"></span>
-                <div className="my-3 flex gap-6">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-primary text-primary dark:border-white dark:text-white">
-                    <FaFacebookF />
-                  </span>{" "}
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-primary text-primary dark:border-white dark:text-white">
-                    <FaTwitter />
-                  </span>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-primary text-primary dark:border-white dark:text-white">
-                    <FaGithub />
-                  </span>
-                </div>
-                <p className="dark:text-primary-200">
-                  or use your email account
-                </p>
+
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
@@ -151,7 +135,7 @@ export default function Login() {
               </span>
               <span className="flex h-1 w-20 rounded-full"></span>
               <span className="my-4">
-                New to PrimeTech? Let&#39;s create a free account to start your
+                New to Mibagu? Let&#39;s create a free account to start your
                 journey with us.
               </span>
               <Link href="/registration">

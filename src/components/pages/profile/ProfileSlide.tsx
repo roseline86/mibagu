@@ -32,7 +32,6 @@ export default function ProfileSlide() {
     console.log("clicked");
     signOut({ redirect: false, callbackUrl: "/" });
   }
-  const admin = process.env.NEXT_PUBLIC_ADMIN;
 
   return (
     <>
@@ -71,7 +70,7 @@ export default function ProfileSlide() {
                   </Button>
                 </Link>
               </SheetClose>
-              {email === admin && (
+              {session.user?.role === "Administrator" && (
                 <SheetClose asChild>
                   <Link href="/newpost">
                     <Button variant="outline" className="flex w-full">
@@ -80,7 +79,7 @@ export default function ProfileSlide() {
                   </Link>
                 </SheetClose>
               )}
-              {email === admin && (
+              {session.user?.role === "Administrator" && (
                 <SheetClose asChild>
                   <Link href="/newads">
                     <Button variant="outline" className="flex w-full">
@@ -89,7 +88,7 @@ export default function ProfileSlide() {
                   </Link>
                 </SheetClose>
               )}
-              {email === admin && (
+              {session.user?.role === "Administrator" && (
                 <SheetClose asChild>
                   <Link href="/adslist">
                     <Button variant="outline" className="flex w-full">

@@ -3,10 +3,18 @@ import AdModelPage from "@/components/core/ads/AdModelPage";
 import { FetchAds } from "@/components/fetch/get/ads/FetchAds";
 import Loading from "@/components/helper/Loading";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
 export default function AdsList() {
+  const { data: session } = useSession();
   const { isLoading, data, isError, refetch } = FetchAds();
+
+  if (!session) {
+    return <p>User not loged in</p>;
+  }
+
+  if(session.user?.role !== 'adminstrator')
 
   if (isLoading) {
     return <Loading />;
