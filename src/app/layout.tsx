@@ -12,8 +12,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PrimeTech",
-  description: "PrimeTech is a technology based blog.",
+  title: "Mibagu",
+  description: "Mibagu is a technology based blog.",
 };
 interface RootLayoutProps {
   children: ReactNode;
@@ -34,7 +34,7 @@ export default function RootLayout({ children, session }: RootLayoutProps) {
             <Provider session={session}>
               <div>
                 <div className="md:grid md:grid-cols-24 lg:flex">
-                  <div className="hidden w-20 md:col-span-2 md:block">
+                  <div className="bg-primary-100 hidden w-20 md:col-span-2 md:block">
                     <LeftSidebar />
                   </div>
                   <div className="md:col-span-22 md:w-full md:border-l">

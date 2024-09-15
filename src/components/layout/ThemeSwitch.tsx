@@ -11,29 +11,28 @@ export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
 
   const handleThemeToggle = () => {
-    if (resolvedTheme === "system") {
-      // If the system theme is light, switch to dark; otherwise, switch to light
-      setTheme(theme === "light" ? "dark" : "light");
-    } else {
-      // If the theme is explicitly set, toggle between "light" and "dark"
-      setTheme(theme === "light" ? "dark" : "light");
-    }
+    // Toggle between light and dark themes
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    // Set the default theme to light when the component mounts
+    if (theme === "system" || !theme) {
+      setTheme("light");
+    }
+  }, [theme, setTheme]);
 
   if (!mounted) {
     return null;
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center gap-5">
+    <div className="relative flex flex-col items-center justify-center gap-5 text-gray-200">
       <Label htmlFor="mode" onClick={handleThemeToggle}>
         <ToolTipHook
           icon={
-            resolvedTheme === "light" ? (
+            theme === "light" ? (
               <MdOutlineWbSunny size={28} />
             ) : (
               <BsMoonStars size={28} />

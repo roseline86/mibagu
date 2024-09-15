@@ -64,11 +64,11 @@ export default function RecentPostModel({
               <FaAngleRight />
             </Button>
           </Link>
-          <div className=" absolute right-2 top-2" title="comment count">
-            <div className="relative">
+          <div className=" bg- absolute right-2 top-2" title="comment count">
+            <div className="text-primary-200 relative">
               <FaComment size="36" />
             </div>
-            <p className="absolute left-3 top-1.5 text-sm text-white dark:text-black">
+            <p className="absolute left-3 top-1.5 text-sm text-black ">
               {comments}
             </p>
           </div>

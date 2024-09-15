@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import ProfileSlide from "../pages/profile/ProfileSlide";
 import Menu from "./Menu";
-import { NavigationMenuComponent } from "./NavigationMenu";
+
 import ThemeSwitch from "./ThemeSwitch";
 
 export default function Navbar() {
@@ -30,10 +30,8 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 z-50 flex h-16 w-full items-center justify-between py-3 transition-all duration-300 md:w-[94.4%] md:pl-3 md:pr-10 lg:py-4 lg:pl-4 ${
-        visible
-          ? "translate-y-0 border opacity-100 backdrop-blur-md"
-          : "-translate-y-20 opacity-10"
+      className={`bg-primary-100 fixed top-0 z-50 flex h-16 w-full items-center justify-between py-3 transition-all duration-300 md:w-[94.4%] md:pl-3 md:pr-10 lg:py-4 lg:pl-4 ${
+        visible ? "translate-y-0  opacity-100 " : "-translate-y-20 opacity-10"
       }`}
     >
       <div className="">
@@ -47,7 +45,38 @@ export default function Navbar() {
       </div>
 
       <div className="hidden items-center justify-center md:gap-4 lg:flex lg:gap-8">
-        <NavigationMenuComponent />
+        <div className=" flex items-center gap-5 text-white">
+          <Link
+            className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
+            href={"/about"}
+          >
+            About
+          </Link>
+          <Link
+            className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
+            href={"/news"}
+          >
+            News
+          </Link>
+          <Link
+            className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
+            href={"/resources"}
+          >
+            Resources
+          </Link>
+          <Link
+            className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
+            href={"/polls"}
+          >
+            Polls and surveys
+          </Link>
+          <Link
+            className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
+            href={"/courses"}
+          >
+            Courses
+          </Link>
+        </div>
         <ProfileSlide />
       </div>
       <div className="flex items-center gap-4 lg:hidden">

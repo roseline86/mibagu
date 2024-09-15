@@ -72,12 +72,10 @@ export default function FeaturedCard({
         </Button>
       </Link>
       <div className=" absolute right-10 top-10" title="comment count">
-        <div className="relative">
+        <div className="text-primary-200 relative">
           <FaComment size="36" />
         </div>
-        <p className="absolute left-3 top-1 text-white dark:text-black">
-          {comments}
-        </p>
+        <p className="absolute left-3 top-1 text-black">{comments}</p>
       </div>
       <Link
         href={`/article/${postLink}`}

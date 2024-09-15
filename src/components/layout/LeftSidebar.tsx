@@ -4,7 +4,7 @@ import ThemeSwitch from "./ThemeSwitch";
 
 export default function LeftSidebar() {
   return (
-    <div className="flex min-h-screen flex-col items-center gap-16 pt-2">
+    <div className="bg-primary-100 flex min-h-screen flex-col items-center gap-16 pt-2">
       <SearchIcon />
       <ThemeSwitch />
       <SocialLinks />

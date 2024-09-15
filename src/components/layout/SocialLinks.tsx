@@ -6,7 +6,7 @@ import ToolTipHook from "../helper/ToolTipHook";
 
 export default function SocialLinks() {
   return (
-    <section className="flex flex-col gap-8 [&>*]:text-gray-600 hover:[&>*]:text-primary">
+    <section className="flex flex-col gap-8 [&>*]:text-gray-300 hover:[&>*]:text-primary">
       <Link
         href="https://facebook.com/sejarparvez"
         target="_blank"
