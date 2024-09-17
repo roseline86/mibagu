@@ -45,13 +45,13 @@ export default function Menu() {
         <SheetContent className="pt-10">
           <SheetHeader>
             <SheetClose asChild>
-              <Link href="/profile" className="flex items-center gap-4">
+              <div className="flex items-center gap-4">
                 <Avatar className="cursor-pointer">
                   {image && <AvatarImage src={image} />}
                   <AvatarFallback>{fallback}</AvatarFallback>
                 </Avatar>
                 <span className="font-extrabold">{name}</span>
-              </Link>
+              </div>
             </SheetClose>
           </SheetHeader>
 
