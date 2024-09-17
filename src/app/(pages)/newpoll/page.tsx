@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import CSS for react-toastify
@@ -89,17 +88,17 @@ const AdminPollForm = () => {
   return (
     <div className="container mx-auto max-w-md p-6">
       <Card className="p-6 shadow-lg">
-        <h2 className="mb-6 text-2xl font-bold">Create Poll/Survey</h2>
+        <h2 className="mb-6 text-center text-2xl font-bold">Create Poll</h2>
 
         {error && <p className="mb-4 text-red-500">{error}</p>}
 
         {/* Poll/Survey Title */}
         <Label htmlFor="title" className="mb-2 block text-sm font-semibold">
-          Poll/Survey Title
+          Poll Title
         </Label>
         <Input
           id="title"
-          placeholder="Poll/Survey Title"
+          placeholder="Poll Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="mb-4"
@@ -116,25 +115,6 @@ const AdminPollForm = () => {
           onChange={(e) => setQuestion(e.target.value)}
           className="mb-4"
         />
-
-        {/* Poll or Survey Type */}
-        <RadioGroup
-          defaultValue={type}
-          onValueChange={setType}
-          className="mb-4"
-        >
-          <Label className="mb-2 text-sm font-semibold">Type</Label>
-          <div className="flex space-x-4">
-            <Label className="flex items-center space-x-2">
-              <RadioGroupItem value="poll" />
-              <span>Poll</span>
-            </Label>
-            <Label className="flex items-center space-x-2">
-              <RadioGroupItem value="survey" />
-              <span>Survey</span>
-            </Label>
-          </div>
-        </RadioGroup>
 
         {/* Poll Options (only shown if type is "poll") */}
         {type === "poll" && (
@@ -174,7 +154,7 @@ const AdminPollForm = () => {
           onClick={handleSubmit}
           disabled={loading}
         >
-          {loading ? "Creating..." : "Create Poll/Survey"}
+          {loading ? "Creating..." : "Create Poll"}
         </Button>
       </Card>
       <ToastContainer position="top-center" />
