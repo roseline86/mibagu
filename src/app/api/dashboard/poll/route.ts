@@ -9,7 +9,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const queryParams = new URLSearchParams(url.search);
     const searchName = queryParams.get("search") || "";
     // Get the total count of all posts
-    const totalPosts = await prisma.post.count();
+    const totalPoll = await prisma.poll.count();
 
     // Calculate the start and end date of this month
     const startDateThisMonth = new Date();
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     // Prepare response object with totalPosts and percentage only
     const responseData = {
-      totalPosts,
+      totalPoll,
       percentage,
     };
 

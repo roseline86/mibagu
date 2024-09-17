@@ -17,7 +17,7 @@ export default function TotalPollCard() {
         <Card className="p-3">
           <div className="flex items-center gap-6">
             <div className="flex flex-col gap-2">
-              <div className="text-4xl font-bold">{data.totalUser}</div>
+              <div className="text-4xl font-bold">{data.totalPoll}</div>
               <div>Total Poll</div>
               <div className="flex flex-wrap gap-1">
                 <span
