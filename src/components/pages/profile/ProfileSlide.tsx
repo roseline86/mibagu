@@ -29,7 +29,6 @@ export default function ProfileSlide() {
   const image = session?.user?.image;
 
   async function handleLogout() {
-    console.log("clicked");
     signOut({ redirect: false, callbackUrl: "/" });
   }
 
