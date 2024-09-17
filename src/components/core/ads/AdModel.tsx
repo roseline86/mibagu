@@ -20,11 +20,15 @@ export default function AdModel({
   adLink,
   adCtaText,
 }: AdProps) {
+  const formattedLink = adLink.startsWith("http")
+    ? adLink
+    : `https://${adLink}`;
+
   return (
     <Card className="shadow-lg">
       <CardContent className="p-3">
         <div className="relative">
-          <Link href={adLink} target="_blank">
+          <Link href={formattedLink} target="_blank">
             <Image
               src={adImage}
               alt="Ad Image"
@@ -33,18 +37,19 @@ export default function AdModel({
               width={500}
             />
           </Link>
-          <Link href={adLink}>
-            <Button
-              size="sm"
-              className="absolute bottom-1 right-0 flex items-center justify-center gap-3 transition-all duration-300 hover:px-5"
-            >
+          <Button
+            asChild
+            size="sm"
+            className="absolute bottom-1 right-0 flex items-center justify-center gap-3 transition-all duration-300 hover:bg-primary-200/80 hover:px-5"
+          >
+            <Link href={formattedLink} target="_blank">
               <span>{adCtaText}</span>
               <FaAngleRight />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
         <div className="mt-5 flex flex-col gap-5">
-          <Link href={adLink}>
+          <Link href={formattedLink} target="_blank">
             <h1 className="text-2xl font-bold transition-all duration-300 hover:text-primary">
               {adTitle}
             </h1>
@@ -52,7 +57,7 @@ export default function AdModel({
           <p className="text-gray-700 dark:text-gray-400">{adDescription}</p>
         </div>
         <div className="mt-4 flex items-end justify-end">
-          <Badge>Ads</Badge>
+          <Badge className="hover:bg-primary-200/80">Ads</Badge>
         </div>
       </CardContent>
     </Card>

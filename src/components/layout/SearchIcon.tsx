@@ -104,7 +104,7 @@ export default function SearchIcon() {
 
   return (
     <div onClick={handleSearchClick}>
-      <div className="rounded-lg bg-primary p-3 text-primary-foreground">
+      <div className="rounded-lg p-1 text-white md:bg-primary md:p-3 md:text-primary-foreground">
         <IoSearch size={20} />
       </div>
 

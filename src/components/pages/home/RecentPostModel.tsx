@@ -58,14 +58,14 @@ export default function RecentPostModel({
           <Link href={`/article/${postLink}`}>
             <Button
               size="sm"
-              className="absolute bottom-1 right-0 flex items-center justify-center gap-3 transition-all duration-300 hover:px-5"
+              className="absolute bottom-1 right-0 flex items-center justify-center gap-3 transition-all duration-300 hover:bg-primary-200/80 hover:px-5"
             >
               <span>View Details</span>
               <FaAngleRight />
             </Button>
           </Link>
           <div className=" bg- absolute right-2 top-2" title="comment count">
-            <div className="text-primary-200 relative">
+            <div className="relative text-primary-200">
               <FaComment size="36" />
             </div>
             <p className="absolute left-3 top-1.5 text-sm text-black ">
@@ -86,7 +86,7 @@ export default function RecentPostModel({
           <p className="text-gray-700 dark:text-gray-400">{content}...</p>
           <div className="flex items-center justify-start">
             <Link href={`/category/${formattedCategory}`}>
-              <Badge>{category}</Badge>
+              <Badge className="hover:bg-primary-200/80">{category}</Badge>
             </Link>
           </div>
         </div>

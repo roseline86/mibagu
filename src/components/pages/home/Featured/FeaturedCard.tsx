@@ -52,7 +52,7 @@ export default function FeaturedCard({
         </div>
 
         <Link href={`/category/${formattedCategory}`}>
-          <Badge>Featured</Badge>
+          <Badge className="hover:bg-primary-200/80">Featured</Badge>
         </Link>
       </div>
       <div className="absolute bottom-[5.8rem] left-10 flex items-center justify-center md:bottom-[3.75rem] md:left-16">
@@ -66,13 +66,13 @@ export default function FeaturedCard({
         <div className="absolute -top-1.5 h-7 w-[3.1rem]  rounded-t-full bg-primary md:-top-2 md:h-10 md:w-20"></div>
       </div>
       <Link href={`/article/${postLink}`}>
-        <Button className="absolute bottom-28 right-0 flex scale-75 items-center justify-center gap-3 transition-all duration-300 hover:px-10 md:bottom-24 md:right-6 md:scale-100">
+        <Button className="absolute bottom-28 right-0 flex scale-75 items-center justify-center gap-3 transition-all duration-300 hover:bg-primary-200/80 hover:px-10 md:bottom-24 md:right-6 md:scale-100">
           <span>View Details</span>
           <FaAngleRight />
         </Button>
       </Link>
       <div className=" absolute right-10 top-10" title="comment count">
-        <div className="text-primary-200 relative">
+        <div className="relative text-primary-200">
           <FaComment size="36" />
         </div>
         <p className="absolute left-3 top-1 text-black">{comments}</p>
