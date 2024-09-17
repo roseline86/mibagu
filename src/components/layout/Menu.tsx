@@ -55,30 +55,40 @@ export default function Menu() {
             </SheetClose>
           </SheetHeader>
 
-          <div className="mt-4 flex flex-col gap-1">
+          <div className="mt-4 flex w-8/12 flex-col gap-1">
             <SheetClose asChild>
               <Link className="text-primary-bg-white " href="/about">
-                About
+                <Button variant="outline" className="flex w-full">
+                  About
+                </Button>
               </Link>
             </SheetClose>
             <SheetClose asChild>
               <Link className="text-primary-bg-white " href="/news">
-                News
+                <Button variant="outline" className="flex w-full">
+                  News
+                </Button>
               </Link>
             </SheetClose>
             <SheetClose asChild>
               <Link className="text-primary-bg-white " href="/resources">
-                Resources
+                <Button variant="outline" className="flex w-full">
+                  Resources
+                </Button>
               </Link>
             </SheetClose>
             <SheetClose asChild>
               <Link className="text-primary-bg-white " href="/polls">
-                Polls & Surveys
+                <Button variant="outline" className="flex w-full">
+                  Polls & Surveys
+                </Button>
               </Link>
             </SheetClose>
             <SheetClose asChild>
               <Link className="text-primary-bg-white " href="/courses">
-                Courses
+                <Button variant="outline" className="flex w-full">
+                  Courses
+                </Button>
               </Link>
             </SheetClose>
             {!session?.user?.id && (
@@ -90,7 +100,7 @@ export default function Menu() {
             )}
           </div>
           {session?.user?.id && (
-            <div className="mt-10 flex w-8/12 flex-col gap-3">
+            <div className="mt-4 flex w-8/12 flex-col gap-3">
               <SheetClose asChild>
                 <Link href="/profile">
                   <Button variant="outline" className="flex w-full">
@@ -107,27 +117,9 @@ export default function Menu() {
               </SheetClose>
               {session?.user?.role === "Administrator" && (
                 <SheetClose asChild>
-                  <Link href="/newpost">
-                    <Button variant="outline" className="flex w-full">
-                      New Post
-                    </Button>
-                  </Link>
-                </SheetClose>
-              )}
-              {session?.user?.role === "Administrator" && (
-                <SheetClose asChild>
-                  <Link href="/newads">
-                    <Button variant="outline" className="flex w-full">
-                      New Ads
-                    </Button>
-                  </Link>
-                </SheetClose>
-              )}
-              {session?.user?.role === "Administrator" && (
-                <SheetClose asChild>
-                  <Link href="/adslist">
-                    <Button variant="outline" className="flex w-full">
-                      AdsList
+                  <Link href="/dashboard">
+                    <Button variant="secondary" className="flex w-full">
+                      Dashboard
                     </Button>
                   </Link>
                 </SheetClose>

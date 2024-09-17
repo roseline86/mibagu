@@ -72,27 +72,9 @@ export default function ProfileSlide() {
               </SheetClose>
               {session.user?.role === "Administrator" && (
                 <SheetClose asChild>
-                  <Link href="/newpost">
-                    <Button variant="outline" className="flex w-full">
-                      New Post
-                    </Button>
-                  </Link>
-                </SheetClose>
-              )}
-              {session.user?.role === "Administrator" && (
-                <SheetClose asChild>
-                  <Link href="/newads">
-                    <Button variant="outline" className="flex w-full">
-                      New Ads
-                    </Button>
-                  </Link>
-                </SheetClose>
-              )}
-              {session.user?.role === "Administrator" && (
-                <SheetClose asChild>
-                  <Link href="/adslist">
-                    <Button variant="outline" className="flex w-full">
-                      AdsList
+                  <Link href="/dashboard">
+                    <Button variant="secondary" className="flex w-full">
+                      Dashboard
                     </Button>
                   </Link>
                 </SheetClose>
