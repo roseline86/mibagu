@@ -8,7 +8,7 @@ export default function Home() {
       <div className="md:grid md:grid-cols-24 lg:flex">
         <div className="col-span-22 w-full">
           <div className="lg:grid lg:grid-cols-48">
-            <div className="col-span-37 border-r px-1 pt-4">
+            <div className="col-span-37 border-r px-1 pt-4 md:px-10">
               <Featured />
               <RecentPost />
             </div>

@@ -70,7 +70,7 @@ export default function Registration() {
 
                 if (response.status === 200) {
                   setTimeout(() => {
-                    router.push("/login");
+                    router.push("/admin");
                   }, 1000);
                 }
               } else {
@@ -150,7 +150,7 @@ export default function Registration() {
                 </section>
                 <p className="md:hidden">
                   Already have an account?
-                  <Link href={"/login"} className="text-xl font-bold">
+                  <Link href={"/admin"} className="text-xl font-bold">
                     Login
                   </Link>
                 </p>

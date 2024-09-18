@@ -91,13 +91,6 @@ export default function Menu() {
                 </Button>
               </Link>
             </SheetClose>
-            {!session?.user?.id && (
-              <SheetClose asChild>
-                <Link className="text-primary-bg-white " href="/login">
-                  <Button>Login</Button>
-                </Link>
-              </SheetClose>
-            )}
           </div>
           {session?.user?.id && (
             <div className="mt-4 flex w-8/12 flex-col gap-3">

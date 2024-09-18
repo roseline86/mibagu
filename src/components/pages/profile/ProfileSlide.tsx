@@ -34,7 +34,7 @@ export default function ProfileSlide() {
 
   return (
     <>
-      {email ? (
+      {email && (
         <Sheet>
           <SheetTrigger asChild>
             <Avatar className="cursor-pointer">
@@ -103,12 +103,6 @@ export default function ProfileSlide() {
             </div>
           </SheetContent>
         </Sheet>
-      ) : (
-        <Link href="/login">
-          <Button size="lg" className="md:px-6 lg:px-10">
-            Login
-          </Button>
-        </Link>
       )}
     </>
   );
