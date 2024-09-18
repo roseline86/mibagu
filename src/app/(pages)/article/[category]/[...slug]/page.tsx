@@ -1,5 +1,6 @@
 "use client";
-import CommentForm from "@/components/core/comments/Comments";
+import { CommentBox } from "@/components/core/comments/CommentBox";
+import CommentsList from "@/components/core/comments/CommentList";
 import { FetchSinglePost } from "@/components/fetch/get/singlepost/FetchSinglePost";
 import Loading from "@/components/helper/Loading";
 import Header from "@/components/pages/singlepost/Header";
@@ -11,7 +12,7 @@ export default function Page() {
   return (
     <>
       {isLoading ? (
-        <div className="m-3">
+        <div className="m-1">
           <Loading />
         </div>
       ) : isError ? (
@@ -30,7 +31,8 @@ export default function Page() {
           />
           <MainContent content={data.content} />
           <div className="mt-10">
-            <CommentForm postId={data.id} />
+            <CommentBox postId={data.id as string} />
+            <CommentsList postId={data.id} />
           </div>
         </>
       )}

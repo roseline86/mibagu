@@ -3,18 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface Comment {
-  id: string;
-  content: string;
-  author: {
-    name: string;
-  };
+  comment: string;
+  name: string;
   post: {
     title: string;
     coverImage: string;
     createdAt: string;
     category: string;
   };
-  createdAt: string;
 }
 
 export default function CommentsModel({ comment }: { comment: Comment }) {
@@ -37,8 +33,8 @@ export default function CommentsModel({ comment }: { comment: Comment }) {
         />
       </div>
       <div className="flex flex-col gap-1 text-sm">
-        <div className="text-sm text-gray-600">{comment.author.name} says</div>
-        <div className="font-bold hover:text-primary">{comment.content}</div>
+        <div className="text-sm text-gray-600">{comment.name} says</div>
+        <div className="font-bold hover:text-primary">{comment.comment}</div>
       </div>
     </Link>
   );

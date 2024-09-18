@@ -71,7 +71,7 @@ export default function Header({
 
   return (
     <>
-      <div className="rounded-lg border  md:mb-10 md:p-4  ">
+      <div className="rounded-lg border p-1 mb-4 md:mb-10 md:p-4  ">
         <h1 className="mb-4 text-xl font-extrabold text-primary md:text-2xl lg:text-4xl">
           {title}
         </h1>

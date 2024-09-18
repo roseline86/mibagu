@@ -20,7 +20,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
         _count: {
           select: {
             posts: true,
-            comments: true,
           },
         },
         name: true,

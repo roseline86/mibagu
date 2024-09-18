@@ -1,13 +1,6 @@
 export interface CommentType {
-  hasLiked: any;
-  likeCount: number;
   id: string;
-  author: {
-    name: string;
-    id: string;
-    image: string | null;
-  };
+  name: string;
   createdAt: string;
-  likedBy: string[];
-  content: string;
+  comment: string;
 }

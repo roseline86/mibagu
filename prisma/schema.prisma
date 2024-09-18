@@ -53,7 +53,6 @@ model User {
   accounts           Account[]
   sessions           Session[]
   posts              Post[]
-  comments           Comment[]
 }
 
 
@@ -71,17 +70,15 @@ model Post {
 }
 
 model Comment {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  content   String
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  comment   String
+  postId    String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  authorId  String   @db.ObjectId
-  postId    String   @db.ObjectId
-  author    User     @relation(fields: [authorId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
-  likedBy   String[]
-
+  post      Post    @relation(fields: [postId], references: [id])
 }
+
 
 model Ads {
   id            String         @id @default(auto()) @map("_id") @db.ObjectId

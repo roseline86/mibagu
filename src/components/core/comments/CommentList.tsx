@@ -15,33 +15,16 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
-import { useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface CommentListProps {
   postId: string;
-  isCommentAdded: boolean;
-  resetCommentAdded: () => void;
 }
 
-export default function CommentsList({
-  postId,
-  isCommentAdded,
-  resetCommentAdded,
-}: CommentListProps) {
+export default function CommentsList({ postId }: CommentListProps) {
   const { isLoading, data, isError, refetch } = FetchComments(postId);
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN;
   const { data: session } = useSession();
-  const user = session?.user?.id as string | undefined;
-
-  useEffect(() => {
-    if (isCommentAdded) {
-      refetch();
-      resetCommentAdded();
-    }
-  }, [isCommentAdded, refetch, resetCommentAdded]);
 
   const handleDelete = async (commentId: string) => {
     try {
@@ -57,12 +40,13 @@ export default function CommentsList({
         toast.error("There was an error.");
       }
     } catch (error) {
+      toast.dismiss();
       toast.error("There was an error.");
     }
   };
 
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className="my-10 flex w-full flex-col gap-4">
       {isLoading ? (
         <div>
           <Loading />
@@ -74,20 +58,7 @@ export default function CommentsList({
           <Card key={comment.id} className="relative p-3">
             <div className="flex  md:flex-row md:justify-between">
               <div className="flex flex-wrap items-center gap-4 md:flex-row">
-                {comment.author.image ? (
-                  <Image
-                    src={comment.author.image}
-                    alt=""
-                    height={100}
-                    width={100}
-                    className="h-12 w-12 rounded-full object-cover"
-                  />
-                ) : (
-                  <div className="h-12 w-12 rounded-full bg-gray-600  p-0.5 text-center text-sm">
-                    No image
-                  </div>
-                )}
-                <div className="text-xl font-bold">{comment.author.name}</div>
+                <div className="text-xl font-bold">{comment.name}</div>
                 <div>
                   {new Date(comment.createdAt).toLocaleString("en-US", {
                     dateStyle: "medium",
@@ -96,9 +67,8 @@ export default function CommentsList({
                 </div>
               </div>
             </div>
-            <div className="md:ml-16">{comment.content}</div>
-            {(session?.user?.email === adminEmail ||
-              session?.user?.name === comment.author.name) && (
+            <div className="mt-4">{comment.comment}</div>
+            {session?.user?.role === "Administrator" && (
               <div className=" absolute right-2 top-2">
                 <AlertDialog>
                   <AlertDialogTrigger asChild>

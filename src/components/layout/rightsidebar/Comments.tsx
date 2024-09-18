@@ -3,17 +3,14 @@ import CommentModel from "./CommentsModel";
 
 interface Comment {
   id: string;
-  content: string;
-  author: {
-    name: string;
-  };
+  comment: string;
+  name: string;
   post: {
     title: string;
     coverImage: string;
     category: string;
     createdAt: string;
   };
-  createdAt: string;
 }
 
 export default function Comments() {

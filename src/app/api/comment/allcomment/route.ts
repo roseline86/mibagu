@@ -8,12 +8,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const { search } = req.nextUrl;
 
     const comments = await prisma.comment.findMany({
-      include: {
-        author: {
-          select: {
-            name: true,
-          },
-        },
+      select: {
+        name: true,
+        comment: true,
         post: {
           select: {
             title: true,

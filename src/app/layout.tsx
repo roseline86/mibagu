@@ -27,14 +27,14 @@ export default function RootLayout({ children, session }: RootLayoutProps) {
         <QueryProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >
             <Provider session={session}>
               <div>
                 <div className="md:grid md:grid-cols-24 lg:flex">
-                  <div className="bg-primary-100 hidden w-20 md:col-span-2 md:block">
+                  <div className="hidden w-20 bg-primary-100 md:col-span-2 md:block">
                     <LeftSidebar />
                   </div>
                   <div className="md:col-span-22 md:w-full md:border-l">

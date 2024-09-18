@@ -1,38 +1,39 @@
 import { PrismaClient } from "@prisma/client";
-import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 const secret = process.env.NEXTAUTH_SECRET;
 
-export async function POST(req: NextRequest, res: NextResponse) {
-  const token = await getToken({ req, secret });
-  const authorId = token?.sub;
-  if (!token || !authorId) {
-    // User is not authenticated or authorId is missing
-    return new NextResponse("User not logged in or authorId missing");
-  }
+export async function POST(req: NextRequest) {
   try {
-    const { comment, postId } = await req.json();
+    const { postId, data } = await req.json();
 
-    if (!comment || !postId) {
-      return new NextResponse("Content and postId are required", {
-        status: 400,
-      });
+    if (!data || !postId || !data.name) {
+      return new NextResponse(
+        JSON.stringify({ message: "Content and postId are required" }),
+        { status: 400 },
+      );
     }
 
+    // Ensure the data structure matches the Prisma schema
     const newComment = await prisma.comment.create({
       data: {
-        content: comment,
         postId,
-        authorId,
+        name: data.name,
+        email: data.email,
+        comment: data.comment,
       },
     });
 
-    return new NextResponse(JSON.stringify(newComment), { status: 201 });
+    return new NextResponse(
+      JSON.stringify({ message: "Comment created successfully", newComment }),
+      { status: 201 },
+    );
   } catch (error) {
     console.error("Error creating comment:", error);
-    return new NextResponse("An error occurred", { status: 500 });
+    return new NextResponse(JSON.stringify({ message: "An error occurred" }), {
+      status: 500,
+    });
   }
 }
 
@@ -50,14 +51,12 @@ export async function GET(req: NextRequest, res: NextResponse) {
       where: {
         postId,
       },
-      include: {
-        author: {
-          select: {
-            name: true,
-            id: true,
-            image: true,
-          },
-        },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        comment: true,
+        createdAt: true,
       },
       orderBy: {
         createdAt: "desc",
@@ -66,23 +65,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     return new NextResponse(JSON.stringify(comments), { status: 200 });
   } catch (error) {
-    console.error("Error fetching comments:", error);
     return new NextResponse("An error occurred", { status: 500 });
   }
 }
 
 export async function DELETE(req: NextRequest, res: NextResponse) {
-  const token = await getToken({ req, secret });
-  const authorId = token?.sub;
-  const isAdmin = token?.email === process.env.NEXT_PUBLIC_ADMIN;
-
-  if (!token || (!authorId && !isAdmin)) {
-    // User is not authenticated or authorId is missing and not an admin
-    return new NextResponse("User not logged in or authorId missing", {
-      status: 401, // Unauthorized status
-    });
-  }
-
   try {
     const search = req.nextUrl;
     const commentId = search.searchParams.get("id");
@@ -101,69 +88,20 @@ export async function DELETE(req: NextRequest, res: NextResponse) {
 
     if (!comment) {
       return new NextResponse("Comment not found", {
-        status: 404, // Not Found status
+        status: 404,
       });
     }
 
-    if (comment.authorId === authorId || isAdmin) {
-      // Check if the user is the author or an admin
-      await prisma.comment.delete({
-        where: {
-          id: commentId,
-        },
-      });
+    await prisma.comment.delete({
+      where: {
+        id: commentId,
+      },
+    });
 
-      return new NextResponse(null, {
-        status: 204, // No Content status
-      });
-    } else {
-      return new NextResponse("You are not authorized to delete this comment", {
-        status: 403, // Forbidden status
-      });
-    }
+    return new NextResponse(null, {
+      status: 204,
+    });
   } catch (error) {
-    console.error("Error deleting comment:", error);
-    return new NextResponse("An error occurred", { status: 500 });
-  }
-}
-
-export async function PUT(req: NextRequest, res: NextResponse) {
-  const url = new URL(req.url);
-
-  try {
-    const queryParams = new URLSearchParams(url.search);
-    const commentId = queryParams.get("commentId");
-    const userId = queryParams.get("userId");
-    const like = queryParams.get("like");
-    if (commentId && userId) {
-      const comment = await prisma.comment.findUnique({
-        where: { id: commentId },
-      });
-      if (comment) {
-        if (like === "true") {
-          comment.likedBy.push(userId);
-        } else if (like === "false") {
-          // Update the likedBy array by filtering out the userId
-          comment.likedBy = comment.likedBy.filter((id) => id !== userId);
-        }
-
-        // Save the updated comment
-        const updatedComment = await prisma.comment.update({
-          where: { id: commentId },
-          data: {
-            likedBy: comment.likedBy,
-          },
-        });
-
-        return new NextResponse(JSON.stringify(updatedComment));
-      } else {
-        return new NextResponse("Comment not found", { status: 404 });
-      }
-    } else {
-      return new NextResponse("Invalid parameters", { status: 400 });
-    }
-  } catch (error) {
-    console.error("Error updating comment:", error);
     return new NextResponse("An error occurred", { status: 500 });
   }
 }

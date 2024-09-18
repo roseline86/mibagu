@@ -91,14 +91,6 @@ export default function Profile() {
                     <span>Member Since:</span>
                     <span>{formatDate(userData.createdAt)}</span>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span>Total Post:</span>
-                    <span>{userData._count.posts}</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span>Total Comment:</span>
-                    <span>{userData._count.comments}</span>
-                  </div>
                 </div>
                 <div
                   className="mt-3 text-muted-foreground"
