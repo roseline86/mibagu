@@ -103,3 +103,10 @@ model Poll {
   voters    String[] @default([]) // List of users or IPs who have voted
   createdAt DateTime @default(now())
 }
+
+
+model Subscriber {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
