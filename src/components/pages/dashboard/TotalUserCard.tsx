@@ -18,7 +18,7 @@ export default function TotalUserCard() {
           <div className="flex items-center gap-6">
             <div className="flex flex-col gap-2">
               <div className="text-4xl font-bold">{data.totalUser}</div>
-              <div>Total User</div>
+              <div>Total Subscriber</div>
               <div className="flex flex-wrap gap-1">
                 <span
                   className={

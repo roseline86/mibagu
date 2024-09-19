@@ -20,10 +20,10 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
     // Get the total user count
 
-    const totalUser = await prisma.user.count();
+    const totalUser = await prisma.subscriber.count();
 
     // Get the count of users created between start and end date of this month
-    const thisMonthUser = await prisma.user.count({
+    const thisMonthUser = await prisma.subscriber.count({
       where: {
         createdAt: {
           gte: startDateThisMonth,
@@ -43,7 +43,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
     endDateLastMonth.setHours(0, 0, 0, 0);
 
     // Get the count of users created between start and end date of last month
-    const lastMonthUser = await prisma.user.count({
+    const lastMonthUser = await prisma.subscriber.count({
       where: {
         createdAt: {
           gte: startDateLastMonth,
