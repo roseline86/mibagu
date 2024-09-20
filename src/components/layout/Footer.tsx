@@ -23,7 +23,7 @@ function Footer() {
                 <Link href="/">Terms Of Use</Link>
               </li>
               <li>
-                <Link href="/">Contact Us</Link>
+                <Link href="/contact">Contact Us</Link>
               </li>
 
               <li>
