@@ -43,17 +43,19 @@ export default function Menu() {
           </div>
         </SheetTrigger>
         <SheetContent className="pt-10">
-          <SheetHeader>
-            <SheetClose asChild>
-              <div className="flex items-center gap-4">
-                <Avatar className="cursor-pointer">
-                  {image && <AvatarImage src={image} />}
-                  <AvatarFallback>{fallback}</AvatarFallback>
-                </Avatar>
-                <span className="font-extrabold">{name}</span>
-              </div>
-            </SheetClose>
-          </SheetHeader>
+          {session?.user?.role === "Administrator" && (
+            <SheetHeader>
+              <SheetClose asChild>
+                <div className="flex items-center gap-4">
+                  <Avatar className="cursor-pointer">
+                    {image && <AvatarImage src={image} />}
+                    <AvatarFallback>{fallback}</AvatarFallback>
+                  </Avatar>
+                  <span className="font-extrabold">{name}</span>
+                </div>
+              </SheetClose>
+            </SheetHeader>
+          )}
 
           <div className="mt-4 flex w-8/12 flex-col gap-1">
             <SheetClose asChild>

@@ -1,12 +1,7 @@
 import favicon from "@/image/favicon.png";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaXTwitter,
-  FaYoutube,
-} from "react-icons/fa6";
+import { FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa6";
 import Subscribe from "./Subscribe";
 
 function Footer() {
@@ -36,13 +31,16 @@ function Footer() {
               </li>
             </ul>
             <div className="mb-14 flex items-center justify-center space-x-10 text-3xl text-white">
-              <Link href="/">
-                <FaXTwitter />
+              <Link
+                href="https://www.linkedin.com/in/trip2africa-travel-agency-719b35189/"
+                target="_blank"
+              >
+                <FaLinkedin />
               </Link>
-              <Link href="/">
-                <FaInstagram />
-              </Link>
-              <Link href="/">
+              <Link
+                href="https://facebook.com/people/Mibagu/61565820790664/"
+                target="_blank"
+              >
                 <FaFacebook />
               </Link>
               <Link href="/">
