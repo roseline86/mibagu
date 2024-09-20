@@ -32,18 +32,18 @@ function Footer() {
             </ul>
             <div className="mb-14 flex items-center justify-center space-x-10 text-3xl text-white">
               <Link
-                href="https://www.linkedin.com/in/trip2africa-travel-agency-719b35189/"
-                target="_blank"
-              >
-                <FaLinkedin />
-              </Link>
-              <Link
                 href="https://facebook.com/people/Mibagu/61565820790664/"
                 target="_blank"
               >
                 <FaFacebook />
               </Link>
-              <Link href="/">
+              <Link
+                href="https://www.linkedin.com/in/trip2africa-travel-agency-719b35189/"
+                target="_blank"
+              >
+                <FaLinkedin />
+              </Link>
+              <Link href="https://www.youtube.com/@mibagu0" target="_blank">
                 <FaYoutube />
               </Link>
             </div>

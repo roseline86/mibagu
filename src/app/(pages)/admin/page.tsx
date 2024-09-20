@@ -83,7 +83,7 @@ export default function Login() {
                 <h1 className="text-center text-2xl font-bold md:text-3xl lg:text-4xl">
                   Log in to MIBAGU
                 </h1>
-                <span className="bg-primary-200 flex h-1 w-20 rounded-full"></span>
+                <span className="flex h-1 w-20 rounded-full bg-primary-200"></span>
 
                 <Form {...form}>
                   <form
@@ -128,6 +128,12 @@ export default function Login() {
                   </form>
                 </Form>
               </section>
+              <div className="flex items-center justify-center space-x-2">
+                <span className="my-4">Don't have an account</span>
+                <Link href="/registration" className="font-bold text-blue-500">
+                  Register Now
+                </Link>
+              </div>
             </div>
             <div className="col-span-2 hidden flex-col items-center justify-center gap-4 bg-secondary p-3 text-center md:flex  md:rounded-r-2xl lg:p-16">
               <span className="text-lightgray-100 text-3xl font-bold">
