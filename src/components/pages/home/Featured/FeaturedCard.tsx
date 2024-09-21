@@ -3,6 +3,7 @@ import { useFormattedPostLink } from "@/components/helper/hook/FormattedLink";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import fallbackAuthorImage from "@/image/user.png";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAngleRight, FaComment, FaRegCalendarAlt } from "react-icons/fa";
@@ -57,12 +58,13 @@ export default function FeaturedCard({
       </div>
       <div className="absolute bottom-[5.8rem] left-10 flex items-center justify-center md:bottom-[3.75rem] md:left-16">
         <Image
-          src={authorImage}
+          src={authorImage || fallbackAuthorImage} // Use fallback image if no authorImage
           alt=""
           height={100}
           width={100}
           className="z-10 h-10 w-10 rounded-full object-cover ring ring-white md:h-16 md:w-16"
         />
+
         <div className="absolute -top-1.5 h-7 w-[3.1rem]  rounded-t-full bg-primary md:-top-2 md:h-10 md:w-20"></div>
       </div>
       <Link href={`/article/${postLink}`}>

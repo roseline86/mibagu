@@ -3,6 +3,7 @@ import { useFormattedPostLink } from "@/components/helper/hook/FormattedLink";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import fallbackAuthorImage from "@/image/user.png";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAngleRight, FaComment, FaRegCalendarAlt } from "react-icons/fa";
@@ -47,13 +48,13 @@ export default function RecentPostModel({
           </Link>
           <div className="absolute -bottom-6 left-10 flex items-center justify-center">
             <Image
-              src={authorImage}
-              alt=""
+              src={authorImage || fallbackAuthorImage} // Use fallback image if no authorImage
+              alt="Author"
               className="z-10 h-12 w-12 rounded-full object-cover ring ring-white"
               height={200}
               width={200}
             />
-            <div className="absolute -top-2  h-8 w-16 rounded-t-full bg-primary"></div>
+            <div className="absolute -top-2 h-8 w-16 rounded-t-full bg-primary"></div>
           </div>
           <Link href={`/article/${postLink}`}>
             <Button
@@ -64,11 +65,11 @@ export default function RecentPostModel({
               <FaAngleRight />
             </Button>
           </Link>
-          <div className=" bg- absolute right-2 top-2" title="comment count">
+          <div className="absolute right-2 top-2" title="comment count">
             <div className="relative text-primary-200">
               <FaComment size="36" />
             </div>
-            <p className="absolute left-3 top-1.5 text-sm text-black ">
+            <p className="absolute left-3 top-1.5 text-sm text-black">
               {comments}
             </p>
           </div>

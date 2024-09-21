@@ -143,7 +143,11 @@ export default function Registration() {
                       </div>
                     )}
 
-                    <Button type="submit" disabled={submitting}>
+                    <Button
+                      type="submit"
+                      className="hover:bg-primary-200/80"
+                      disabled={submitting}
+                    >
                       Registration
                     </Button>
                   </Form>
