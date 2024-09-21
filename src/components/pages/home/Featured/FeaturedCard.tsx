@@ -51,7 +51,7 @@ export default function FeaturedCard({
           </span>
         </div>
 
-        <Link href={`/category/${formattedCategory}`}>
+        <Link href={`/category/${formattedCategory}/page/1`}>
           <Badge className="hover:bg-primary-200/80">Featured</Badge>
         </Link>
       </div>

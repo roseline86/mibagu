@@ -55,13 +55,13 @@ export default function Navbar() {
           </Link>
           <Link
             className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
-            href={"/news"}
+            href={"/category/news/page/1"}
           >
             News
           </Link>
           <Link
             className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
-            href={"/resources"}
+            href={"/resources/page/1"}
           >
             Resources
           </Link>

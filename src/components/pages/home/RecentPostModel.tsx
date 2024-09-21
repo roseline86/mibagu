@@ -85,7 +85,7 @@ export default function RecentPostModel({
           </p>
           <p className="text-gray-700 dark:text-gray-400">{content}...</p>
           <div className="flex items-center justify-start">
-            <Link href={`/category/${formattedCategory}`}>
+            <Link href={`/category/${formattedCategory}/page/1`}>
               <Badge className="hover:bg-primary-200/80">{category}</Badge>
             </Link>
           </div>

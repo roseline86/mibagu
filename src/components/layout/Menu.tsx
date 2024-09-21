@@ -66,14 +66,20 @@ export default function Menu() {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link className="text-primary-bg-white " href="/news">
+              <Link
+                className="text-primary-bg-white "
+                href="/category/news/page/1"
+              >
                 <Button variant="outline" className="flex w-full">
                   News
                 </Button>
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link className="text-primary-bg-white " href="/resources">
+              <Link
+                className="text-primary-bg-white "
+                href="/category/resources/page/1"
+              >
                 <Button variant="outline" className="flex w-full">
                   Resources
                 </Button>
