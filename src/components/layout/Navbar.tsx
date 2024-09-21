@@ -61,7 +61,7 @@ export default function Navbar() {
           </Link>
           <Link
             className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
-            href={"/resources/page/1"}
+            href={"/category/resources/page/1"}
           >
             Resources
           </Link>
@@ -73,7 +73,7 @@ export default function Navbar() {
           </Link>
           <Link
             className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
-            href={"/courses"}
+            href={"/category/courses/page/1"}
           >
             Courses
           </Link>
