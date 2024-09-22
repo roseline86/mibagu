@@ -83,3 +83,21 @@ export async function DELETE(req: NextRequest) {
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
+
+export async function GET(req: NextRequest, res: NextResponse) {
+  try {
+    const url = new URL(req.url);
+    const email = url.searchParams.get("mail");
+    const subscriber = await prisma.subscriber.findMany({
+      select: {
+        email: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return new NextResponse(JSON.stringify(subscriber), { status: 200 });
+  } catch (error) {
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
+}

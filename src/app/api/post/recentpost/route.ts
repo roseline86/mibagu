@@ -9,6 +9,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
     const queryParams = new URLSearchParams(url.search);
     const searchName = queryParams.get("search") || "";
     const response = await prisma.post.findMany({
+      where: {
+        category: { not: "Static" },
+      },
       take: 5,
       select: {
         title: true,

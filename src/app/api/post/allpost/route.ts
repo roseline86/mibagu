@@ -3,23 +3,35 @@ import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
     const queryParams = new URLSearchParams(url.search);
 
-    const page = queryParams.get("page")
-      ? parseInt(queryParams.get("page")!, 10)
-      : 1;
-    const pageSize = queryParams.get("pageSize")
-      ? parseInt(queryParams.get("pageSize")!, 10)
-      : 10;
+    const page = parseInt(queryParams.get("page") || "1", 10);
+    const pageSize = parseInt(queryParams.get("pageSize") || "10", 10);
 
     const skipCount = (page - 1) * pageSize;
 
-    const totalPostsCount = await prisma.post.count();
+    // Define the static category to exclude (replace 'Static Category' with your actual category name)
+    const staticCategory = "Static";
 
+    // Fetch total post count excluding the static category
+    const totalPostsCount = await prisma.post.count({
+      where: {
+        category: {
+          not: staticCategory, // Exclude posts from the static category
+        },
+      },
+    });
+
+    // Fetch posts excluding the static category with pagination
     const allPosts = await prisma.post.findMany({
+      where: {
+        category: {
+          not: staticCategory,
+        },
+      },
       select: {
         id: true,
         title: true,
@@ -47,29 +59,17 @@ export async function GET(req: NextRequest, res: NextResponse) {
       take: pageSize,
     });
 
-    // Remove HTML tags from content
-    const sanitizedPosts = allPosts.map((post) => {
-      return {
-        ...post,
-        content: post.content.replace(/<[^>]*>/g, ""), // Remove HTML tags
-      };
-    });
+    // Remove HTML tags and truncate content to 180 characters
+    const sanitizedAndTruncatedPosts = allPosts.map((post) => ({
+      ...post,
+      content: post.content.replace(/<[^>]*>/g, "").slice(0, 180),
+    }));
 
-    // Truncate content to 200 characters
-    const truncatedPosts = sanitizedPosts.map((post) => {
-      return {
-        ...post,
-        content: post.content.slice(0, 180),
-      };
-    });
-
-    if (truncatedPosts.length > 0) {
-      return new NextResponse(
-        JSON.stringify({ posts: truncatedPosts, totalPostsCount }),
-        {
-          headers: { "Content-Type": "application/json" },
-        },
-      );
+    if (sanitizedAndTruncatedPosts.length > 0) {
+      return NextResponse.json({
+        posts: sanitizedAndTruncatedPosts,
+        totalPostsCount,
+      });
     } else {
       return new NextResponse("No posts found.", {
         status: 404,

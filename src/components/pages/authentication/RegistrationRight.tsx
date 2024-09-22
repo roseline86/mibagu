@@ -7,7 +7,7 @@ export default function RegistrationRight() {
       <span className="text-lightgray-100 text-3xl font-bold">Hi, There!</span>
       <span className="bg-lightgray-100 flex h-1 w-20 rounded-full"></span>
       <span className="text-darkgray-100 my-4">Already have an account?</span>
-      <Link href="/login">
+      <Link href="/admin">
         <Button className="px-10">Log In</Button>
       </Link>
     </div>

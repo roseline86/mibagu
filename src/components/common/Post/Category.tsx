@@ -1,1 +1,8 @@
-export const Category = ["News", "Resources", "Featured", "About", "Courses"];
+export const Category = [
+  "News",
+  "Resources",
+  "Featured",
+  "About",
+  "Courses",
+  "Static",
+];

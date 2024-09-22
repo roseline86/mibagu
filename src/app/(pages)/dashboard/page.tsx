@@ -56,10 +56,10 @@ export default function page() {
               New&nbsp;Polls
             </Link>
             <Link
-              href="/userlist"
+              href="/subscriber-list"
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
-              User&nbsp;List
+              Subscriber&nbsp;List
             </Link>
           </nav>
           <Sheet>
@@ -104,10 +104,10 @@ export default function page() {
                   New&nbsp;Polls
                 </Link>
                 <Link
-                  href="userlist"
+                  href="subscriber-list"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  User&nbsp;List
+                  Subscriber&nbsp;List
                 </Link>
               </nav>
             </SheetContent>
