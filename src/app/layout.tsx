@@ -10,10 +10,39 @@ import { ThemeProvider } from "../provider/ThemeProvider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const siteurl = process.env.NEXT_PUBLIC_SITE_URL;
 
 export const metadata: Metadata = {
-  title: "Mibagu",
-  description: "Mibagu is a technology based blog.",
+  metadataBase: new URL(`${siteurl}`),
+  title: {
+    default: "Mibagu",
+    template: "%s - Mibagu",
+  },
+  description:
+    "This platform is for Namibian entrepreneurs to mentor each other. It is also an information portal and a market place for farmers to sell their produce.",
+  generator: "Next js",
+  applicationName: "Mibagu",
+
+  authors: [{ name: "mibagu", url: "https://www.mibagu.com" }],
+  creator: "Roseline",
+  openGraph: {
+    title: "Mibagu",
+    description:
+      "This platform is for Namibian entrepreneurs to mentor each other. It is also an information portal and a market place for farmers to sell their produce.",
+    url: "https://www.mibagu.com",
+    siteName: "Mibagu",
+    type: "website",
+  },
+  verification: {
+    google: "PwVglBQypdyR9SYyiJqv_BzHqNML2H6bhyE2N0dLGqQ",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Mibagu",
+    description:
+      "This platform is for Namibian entrepreneurs to mentor each other. It is also an information portal and a market place for farmers to sell their produce.",
+  },
 };
 interface RootLayoutProps {
   children: ReactNode;
