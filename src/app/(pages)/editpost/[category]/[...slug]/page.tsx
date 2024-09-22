@@ -1,5 +1,6 @@
 "use client";
-import { FetchSinglePost } from "@/components/fetch/get/singlepost/FetchSinglePost";
+
+import { FetchEditPost } from "@/components/fetch/get/singlepost/FetchSinglePost";
 import Loading from "@/components/helper/Loading";
 import { CategorySelect } from "@/components/pages/newpost/CategorySelect";
 import { FileInput } from "@/components/pages/newpost/FileInput";
@@ -47,7 +48,7 @@ export default function NewPost() {
     }
   };
 
-  const { data, isLoading, isError } = FetchSinglePost();
+  const { data, isLoading, isError } = FetchEditPost();
 
   if (isLoading) {
     return <Loading />;
