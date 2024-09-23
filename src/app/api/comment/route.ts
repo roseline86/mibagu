@@ -8,14 +8,41 @@ export async function POST(req: NextRequest) {
   try {
     const { postId, data } = await req.json();
 
-    if (!data || !postId || !data.name) {
+    // Input validation
+    if (!data || !postId || !data.name || !data.comment || !data.email) {
       return new NextResponse(
-        JSON.stringify({ message: "Content and postId are required" }),
-        { status: 400 },
+        JSON.stringify({
+          message: "Post ID, name, comment, and email are required",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
 
-    // Ensure the data structure matches the Prisma schema
+    // Optional: Verify secret if needed
+    if (!secret) {
+      return new NextResponse(
+        JSON.stringify({ message: "Unauthorized request: secret is missing" }),
+        { status: 401, headers: { "Content-Type": "application/json" } },
+      );
+    }
+
+    // Check if the email is already subscribed
+    const existingSubscriber = await prisma.subscriber.findUnique({
+      where: {
+        email: data.email,
+      },
+    });
+
+    // If not subscribed, add the email to the subscribers' list
+    if (!existingSubscriber) {
+      await prisma.subscriber.create({
+        data: {
+          email: data.email,
+        },
+      });
+    }
+
+    // Create the new comment
     const newComment = await prisma.comment.create({
       data: {
         postId,
@@ -25,15 +52,28 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // Disconnect Prisma to prevent memory leaks
+    await prisma.$disconnect();
+
     return new NextResponse(
-      JSON.stringify({ message: "Comment created successfully", newComment }),
-      { status: 201 },
+      JSON.stringify({
+        message: "Comment created successfully and user subscribed",
+        newComment,
+      }),
+      { status: 201, headers: { "Content-Type": "application/json" } },
     );
   } catch (error) {
     console.error("Error creating comment:", error);
-    return new NextResponse(JSON.stringify({ message: "An error occurred" }), {
-      status: 500,
-    });
+
+    // Disconnect Prisma in case of error
+    await prisma.$disconnect();
+
+    return new NextResponse(
+      JSON.stringify({
+        message: "An error occurred while creating the comment",
+      }),
+      { status: 500, headers: { "Content-Type": "application/json" } },
+    );
   }
 }
 

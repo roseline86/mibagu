@@ -8,28 +8,31 @@ export async function GET(req: NextRequest) {
     const url = new URL(req.url);
     const queryParams = new URLSearchParams(url.search);
 
-    const page = parseInt(queryParams.get("page") || "1", 10);
-    const pageSize = parseInt(queryParams.get("pageSize") || "10", 10);
+    const page = Math.max(parseInt(queryParams.get("page") || "1", 10), 1);
+    const pageSize = Math.max(
+      parseInt(queryParams.get("pageSize") || "10", 10),
+      1,
+    );
 
     const skipCount = (page - 1) * pageSize;
 
-    // Define the static category to exclude (replace 'Static Category' with your actual category name)
-    const staticCategory = "Static";
+    // Define the categories to exclude
+    const excludedCategories = ["Static", "Courses"];
 
-    // Fetch total post count excluding the static category
+    // Fetch total post count excluding the specified categories
     const totalPostsCount = await prisma.post.count({
       where: {
         category: {
-          not: staticCategory, // Exclude posts from the static category
+          notIn: excludedCategories,
         },
       },
     });
 
-    // Fetch posts excluding the static category with pagination
+    // Fetch posts excluding the specified categories with pagination
     const allPosts = await prisma.post.findMany({
       where: {
         category: {
-          not: staticCategory,
+          notIn: excludedCategories,
         },
       },
       select: {
@@ -62,7 +65,9 @@ export async function GET(req: NextRequest) {
     // Remove HTML tags and truncate content to 180 characters
     const sanitizedAndTruncatedPosts = allPosts.map((post) => ({
       ...post,
-      content: post.content.replace(/<[^>]*>/g, "").slice(0, 180),
+      content: post.content
+        ? post.content.replace(/<[^>]*>/g, "").slice(0, 180)
+        : "",
     }));
 
     if (sanitizedAndTruncatedPosts.length > 0) {
@@ -77,8 +82,7 @@ export async function GET(req: NextRequest) {
       });
     }
   } catch (error) {
-    console.error("Error fetching posts:", error);
-    return new NextResponse("Internal Server Error", {
+    return new NextResponse(`Error fetching posts`, {
       status: 500,
       headers: { "Content-Type": "text/plain" },
     });
