@@ -96,7 +96,10 @@ export default function Menu() {
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link className="text-primary-bg-white " href="/courses">
+              <Link
+                className="text-primary-bg-white "
+                href="/category/courses/page/1"
+              >
                 <Button variant="outline" className="flex w-full">
                   Courses
                 </Button>
