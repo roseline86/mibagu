@@ -64,7 +64,7 @@ export default function Menu() {
                 href="/article/static/23/09/2024/about-us"
               >
                 <Button variant="outline" className="flex w-full">
-                  About
+                  About Us
                 </Button>
               </Link>
             </SheetClose>

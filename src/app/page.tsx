@@ -4,7 +4,7 @@ import RecentPost from "@/components/pages/home/RecentPost";
 
 export default function Home() {
   return (
-    <div>
+    <div className=" overflow-x-hidden">
       <div className="md:grid md:grid-cols-24 lg:flex">
         <div className="col-span-22 w-full">
           <div className="lg:grid lg:grid-cols-48">

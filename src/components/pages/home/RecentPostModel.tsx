@@ -73,7 +73,7 @@ export default function RecentPostModel({
             </p>
           </div>
         </div>
-        <div className="mt-12 flex flex-col gap-5">
+        <div className="mt-6 flex flex-col gap-5">
           <Link href={`/article/${postLink}`}>
             <h1 className="text-2xl font-bold transition-all duration-300 hover:text-primary">
               {title}

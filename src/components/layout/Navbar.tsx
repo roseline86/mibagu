@@ -51,7 +51,7 @@ export default function Navbar() {
             className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
             href={"/article/static/23/09/2024/about-us"}
           >
-            About
+            About us
           </Link>
           <Link
             className="rounded px-4 py-2 transition-all duration-300 hover:bg-red-700"
