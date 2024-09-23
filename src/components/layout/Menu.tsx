@@ -59,7 +59,10 @@ export default function Menu() {
 
           <div className="mt-4 flex w-8/12 flex-col gap-1">
             <SheetClose asChild>
-              <Link className="text-primary-bg-white " href="/about">
+              <Link
+                className="text-primary-bg-white "
+                href="/article/static/23/09/2024/about-us"
+              >
                 <Button variant="outline" className="flex w-full">
                   About
                 </Button>

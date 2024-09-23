@@ -41,10 +41,13 @@ export default function Blog() {
             id={data.id}
           />
           <MainContent content={data.content} />
-          <div className="mt-10">
-            <CommentBox postId={data.id as string} />
-            <CommentsList postId={data.id} />
-          </div>
+          {/* Only show the comment field if category is NOT "static" */}
+          {category !== "static" && (
+            <div className="mt-10">
+              <CommentBox postId={data.id as string} />
+              <CommentsList postId={data.id} />
+            </div>
+          )}
         </>
       )}
     </>

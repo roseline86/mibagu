@@ -17,17 +17,23 @@ function Footer() {
             <Subscribe />
             <ul className=" my-10 grid grid-cols-2 gap-2 border-b pb-10 md:mx-auto md:flex md:items-center md:justify-center md:gap-16 ">
               <li>
-                <Link href="/privacy">Privacy Policy</Link>
+                <Link href="/article/static/23/09/2024/privacy-policy">
+                  Privacy Policy
+                </Link>
               </li>
               <li>
-                <Link href="/terms">Terms Of Use</Link>
+                <Link href="/article/static/23/09/2024/term-of-use">
+                  Terms Of Use
+                </Link>
               </li>
               <li>
                 <Link href="/contact">Contact Us</Link>
               </li>
 
               <li>
-                <Link href="/advertise">Advertise With Us</Link>
+                <Link href="/article/static/23/09/2024/advertise-with-us">
+                  Advertise With Us
+                </Link>
               </li>
             </ul>
             <div className="mb-14 flex items-center justify-center space-x-10 text-3xl text-white">

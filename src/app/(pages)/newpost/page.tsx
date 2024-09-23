@@ -79,7 +79,7 @@ export default function NewPost() {
                 /^[a-zA-Z0-9\s,'_]+$/,
                 "Title can not contain special characters",
               )
-              .min(20, "Title Must be at least 20 characters")
+              .min(5, "Title Must be at least 5 characters")
               .max(80, "Title can not be more than 80 characters")
               .required(),
             category: Yup.string().required(),
@@ -170,11 +170,7 @@ export default function NewPost() {
                 </CardFooter>
               </Card>
             </div>
-            <ToastContainer
-              position="top-center"
-              autoClose={3000}
-              theme="dark"
-            />
+            <ToastContainer position="top-center" autoClose={3000} />
           </Form>
         </Formik>
       )}

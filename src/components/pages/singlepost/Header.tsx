@@ -71,7 +71,7 @@ export default function Header({
 
   return (
     <>
-      <div className="rounded-lg border p-1 mb-4 md:mb-10 md:p-4  ">
+      <div className="mb-4 rounded-lg border p-1 md:mb-10 md:p-4  ">
         <h1 className="mb-4 text-xl font-extrabold text-primary md:text-2xl lg:text-4xl">
           {title}
         </h1>
@@ -135,14 +135,15 @@ export default function Header({
             </div>
           )}
       </div>
-
-      <Image
-        src={image}
-        alt=""
-        className="h-52 w-full rounded-lg object-cover  md:h-[29rem]"
-        width={900}
-        height={900}
-      />
+      {category !== "Static" && (
+        <Image
+          src={image}
+          alt=""
+          className="h-52 w-full rounded-lg object-cover  md:h-[29rem]"
+          width={900}
+          height={900}
+        />
+      )}
     </>
   );
 }
