@@ -3,7 +3,6 @@ import { useFormattedPostLink } from "@/components/helper/hook/FormattedLink";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import fallbackAuthorImage from "@/image/user.png";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAngleRight, FaComment, FaRegCalendarAlt } from "react-icons/fa";
@@ -46,7 +45,7 @@ export default function RecentPostModel({
               width={500}
             />
           </Link>
-          <div className="absolute -bottom-6 left-10 flex items-center justify-center">
+          {/* <div className="absolute -bottom-6 left-10 flex items-center justify-center">
             <Image
               src={authorImage || fallbackAuthorImage} // Use fallback image if no authorImage
               alt="Author"
@@ -55,7 +54,7 @@ export default function RecentPostModel({
               width={200}
             />
             <div className="absolute -top-2 h-8 w-16 rounded-t-full bg-primary"></div>
-          </div>
+          </div> */}
           <Link href={`/article/${postLink}`}>
             <Button
               size="sm"

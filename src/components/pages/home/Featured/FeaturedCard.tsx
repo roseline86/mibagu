@@ -51,7 +51,7 @@ export default function FeaturedCard({
           </span>
         </div>
       </div>
-      <div className="absolute left-10  hidden items-center justify-center md:bottom-[3.75rem] md:left-16 md:flex">
+      {/* <div className="absolute left-10  hidden items-center justify-center md:bottom-[3.75rem] md:left-16 md:flex">
         <Image
           src={authorImage || fallbackAuthorImage} // Use fallback image if no authorImage
           alt=""
@@ -61,7 +61,7 @@ export default function FeaturedCard({
         />
 
         <div className="absolute -top-1.5 h-7 w-[3.1rem]  rounded-t-full bg-primary md:-top-2 md:h-10 md:w-20"></div>
-      </div>
+      </div> */}
       <Link href={`/article/${postLink}`}>
         <Button className="absolute bottom-0 right-0 flex scale-75 items-center justify-center gap-3 transition-all duration-300 hover:bg-primary-200/80 hover:px-10 md:bottom-24 md:right-6 md:scale-100">
           <span>View Details</span>
